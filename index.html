@@ -234,6 +234,26 @@
         .nav-arrow:hover { background: var(--ventas-blue); color: white; }
         .next { right: 25px; } .prev { left: 25px; }
         .footer-note { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); color: #9ca3af; font-size: 0.75rem; }
+
+        /* FULL IMAGE SLIDE */
+        .full-image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            padding: 80px 40px 40px 40px;
+            box-sizing: border-box;
+        }
+        
+        .full-image {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -378,8 +398,23 @@
             <a href="#slide7" class="next nav-arrow" onclick="updateProgress(7)">❯</a>
         </section>
 
-        <!-- Slide 7: TDD Functional System Timeline -->
+        <!-- Slide 7: AI Model Comparison Image -->
         <section id="slide7">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <div class="full-image-container">
+                <img src="ai-model.png" alt="AI Model Comparison" class="full-image" 
+                     onerror="this.onerror=null; this.src='Ai.png'; this.onerror=function(){this.src='ai.png'; this.onerror=function(){this.alt='Image not found - check filename';}}">
+            </div>
+            <a href="#slide6" class="prev nav-arrow" onclick="updateProgress(6)">❮</a>
+            <a href="#slide8" class="next nav-arrow" onclick="updateProgress(8)">❯</a>
+            <div class="footer-note">Slide 7: AI Model Comparison</div>
+        </section>
+
+        <!-- Slide 8: TDD Functional System Timeline -->
+        <section id="slide8">
             <div class="brand-container">
                 <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
                 <span class="brand-name">Coeur Connect</span>
@@ -476,7 +511,7 @@
                 </div>
             </div>
 
-            <a href="#slide6" class="prev nav-arrow" onclick="updateProgress(6)">❮</a>
+            <a href="#slide7" class="prev nav-arrow" onclick="updateProgress(7)">❮</a>
             <div class="footer-note">End of Pitch | Coeur Connect 2026</div>
         </section>
 
@@ -484,7 +519,7 @@
 
     <script>
         function updateProgress(slideNum) {
-            const percentage = (slideNum / 7) * 100;
+            const percentage = (slideNum / 8) * 100;
             document.getElementById('progressBar').style.width = percentage + '%';
         }
 
