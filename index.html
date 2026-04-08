@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coeur Connect | Ventas Consulting Pitch</title>
+    <style>
+        :root {
+            --ventas-blue: #002b5c;
+            --coeur-orange: #F97316;
+            --bg-light: #f9fafb;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --white: #ffffff;
+        }
+
+        html, body {
+            margin: 0; padding: 0; height: 100%; width: 100%;
+            overflow: hidden; font-family: 'Inter', -apple-system, sans-serif;
+            background: #111827;
+        }
+
+        .slider {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            scroll-behavior: smooth; height: 100vh; width: 100vw;
+        }
+        .slider::-webkit-scrollbar { display: none; }
+
+        section {
+            flex: 0 0 100vw; height: 100vh; scroll-snap-align: start;
+            background: var(--white); position: relative; display: flex;
+            flex-direction: column; justify-content: center; padding: 0 6%;
+            box-sizing: border-box;
+        }
+
+        /* PROGRESS BAR */
+        .progress-container {
+            position: fixed; top: 0; left: 0; right: 0; height: 5px;
+            background: rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .progress-bar {
+            height: 100%; background: var(--coeur-orange);
+            transition: width 0.3s ease; width: 14%;
+        }
+
+        /* BRANDING */
+        .brand-container {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 1.5vh; align-self: flex-start;
+            position: absolute; top: 20px; left: 6%;
+            z-index: 10;
+        }
+        .header-logo { 
+            height: 45px; 
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+        .brand-name { font-size: 1.5rem; font-weight: 800; color: var(--coeur-orange); letter-spacing: -0.5px; }
+
+        /* TYPOGRAPHY */
+        h1 { color: var(--ventas-blue); font-size: clamp(2rem, 5vh, 3.2rem); line-height: 1.1; margin: 0 0 2vh 0; }
+        h2 { color: var(--ventas-blue); font-size: 1.6rem; margin-bottom: 2vh; margin-top: 60px; }
+        h2.centered-title {
+            text-align: center;
+            border-left: none;
+            padding-left: 0;
+            width: 100%;
+        }
+        h3 { color: var(--ventas-blue); margin-bottom: 8px; font-size: 1.1rem; }
+
+        /* LAYOUTS */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+        .two-col { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; }
+
+        /* COMPONENTS */
+        .stat-box { background: var(--ventas-blue); padding: 3vh 15px; border-radius: 20px; text-align: center; }
+        .stat-val { display: block; font-size: clamp(2rem, 5vh, 3.5rem); font-weight: 800; color: var(--coeur-orange); }
+        .stat-label { color: var(--white) !important; font-size: 1rem; font-weight: 500; display: block; margin-top: 5px; }
+
+        .value-badge {
+            display: inline-block; background: #fff7ed; border: 1px solid var(--coeur-orange);
+            color: var(--coeur-orange); padding: 5px 12px; border-radius: 6px;
+            font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase;
+        }
+
+        .feature-list { list-style: none; padding: 0; }
+        .feature-list li { 
+            margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 1.05rem; color: var(--text-main);
+        }
+        .feature-list li::before { content: '→'; position: absolute; left: 0; color: var(--coeur-orange); font-weight: bold; }
+
+        .demo-img { width: 100%; max-height: 50vh; object-fit: contain; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+
+        /* DEMO CALLOUT */
+        .demo-callout { background: #fff7ed; border: 2px dashed var(--coeur-orange); padding: 30px; border-radius: 20px; text-align: center; }
+        .btn-demo { display: inline-block; background: var(--coeur-orange); color: white; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 15px; }
+
+        /* TIMELINE STYLES - VERTICAL TEXT */
+        .timeline-wrapper {
+            margin-top: 30px;
+            position: relative;
+        }
+        
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        .sprint-header {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .sprint-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ventas-blue);
+            margin-bottom: 8px;
+        }
+        
+        .sprint-date {
+            font-size: 0.85rem;
+            color: var(--coeur-orange);
+            font-weight: 600;
+        }
+        
+        .timeline-line {
+            position: relative;
+            height: 3px;
+            background: linear-gradient(to right, #9ca3af 25%, var(--coeur-orange) 25%, var(--coeur-orange) 75%, #8b5cf6 75%);
+            margin: 0 20px 30px 20px;
+        }
+        
+        .timeline-line::before,
+        .timeline-line::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+        
+        .timeline-line::before {
+            left: 0;
+            background: #9ca3af;
+        }
+        
+        .timeline-line::after {
+            right: 0;
+            background: #8b5cf6;
+        }
+        
+        .timeline-dividers {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 23px;
+            display: flex;
+        }
+        
+        .divider {
+            flex: 1;
+            border-right: 2px solid var(--ventas-blue);
+            position: relative;
+        }
+        
+        .divider:last-child {
+            border-right: none;
+        }
+        
+        .timeline-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+        
+        .phase-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        
+        .phase-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-size: 0.75rem;
+            color: var(--text-main);
+            line-height: 1.2;
+            text-align: center;
+            max-height: 200px;
+            padding: 10px 5px;
+        }
+        
+        .phase-text.completed {
+            color: #6b7280;
+        }
+        
+        .phase-text.current {
+            color: var(--coeur-orange);
+            font-weight: 700;
+        }
+        
+        .phase-text.upcoming {
+            color: #7c3aed;
+        }
+
+        /* ROI BAR */
+        .roi-bar { 
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white; padding: 15px 25px; border-radius: 10px; margin-bottom: 20px;
+            display: flex; justify-content: space-around; align-items: center;
+        }
+        .roi-stat { text-align: center; }
+        .roi-number { font-size: 2rem; font-weight: 800; display: block; }
+        .roi-label { font-size: 0.8rem; opacity: 0.9; }
+
+        /* NAV */
+        .nav-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0, 43, 92, 0.05); color: var(--ventas-blue);
+            width: 45px; height: 45px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-weight: bold; z-index: 100;
+            transition: all 0.2s;
+        }
+        .nav-arrow:hover { background: var(--ventas-blue); color: white; }
+        .next { right: 25px; } .prev { left: 25px; }
+        .footer-note { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); color: #9ca3af; font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="slider" id="slider">
+        
+        <!-- Slide 1: Executive Summary -->
+        <section id="slide1">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <h1>Transforming Ventas Hiring:<br>From 10 Days to 48 Hours</h1>
+            <p style="max-width: 800px;">Standardizing JD creation and accelerating property-level staffing via AI-driven compliance and automation.</p>
+            <div class="grid-3">
+                <div class="stat-box">
+                    <span class="stat-val">80%</span>
+                    <span class="stat-label">Approval Speedup</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-val">$20k+</span>
+                    <span class="stat-label">Recovered Rev/Hire</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-val">100%</span>
+                    <span class="stat-label">Legal Consistency</span>
+                </div>
+            </div>
+            <a href="#slide2" class="next nav-arrow" onclick="updateProgress(2)">❯</a>
+            <div class="footer-note">Slide 1: Executive Summary</div>
+        </section>
+
+        <!-- Slide 2: Situation -->
+        <section id="slide2">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <h2 style="border-left: 6px solid var(--coeur-orange); padding-left: 20px;">The 10-Day Bottleneck</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Situation & Complication</h3>
+                    <p>Manual JD drafting and email-based approvals create a 10-day lag, leading to miscommunication, and missing deadlines.</p>
+                    <div style="background: #f3f4f6; padding: 20px; border-radius: 15px; margin-top: 20px;">
+                        <h3 style="margin-top:0;">The Question:</h3>
+                        <p style="font-style: italic; margin-bottom:0;">"How do we automate compliance to hit a 48-hour posting target?"</p>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <img src="dashboard.png" class="demo-img" style="max-height: 35vh;">
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Real-time bottleneck identification</p>
+                </div>
+            </div>
+            <a href="#slide1" class="prev nav-arrow" onclick="updateProgress(1)">❮</a>
+            <a href="#slide3" class="next nav-arrow" onclick="updateProgress(3)">❯</a>
+        </section>
+
+        <!-- Slide 3: Solution -->
+        <section id="slide3">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <div class="value-badge">Efficiency & Compliance</div>
+            <h2 style="border-left: 6px solid var(--coeur-orange); padding-left: 20px;">Smart Creation Engine</h2>
+            <div class="two-col">
+                <div>
+                    <ul class="feature-list">
+                        <li><strong>Regulatory Guardrails:</strong> AI automatically injects EEOC compliance policy and unbiased language.</li>
+                        <li><strong>Dynamic Benchmarking:</strong> Real-time requirements & qualifications suggestions to ensure proper Job Description generation.</li>
+                        <li><strong>Brand Consistency:</strong> Locked templates prevent non-compliant rogue formatting.</li>
+                    </ul>
+                </div>
+                <img src="create.png" class="demo-img" alt="Create Interface">
+            </div>
+            <a href="#slide2" class="prev nav-arrow" onclick="updateProgress(2)">❮</a>
+            <a href="#slide4" class="next nav-arrow" onclick="updateProgress(4)">❯</a>
+        </section>
+
+        <!-- Slide 4: Status Tracking -->
+        <section id="slide4">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <div class="value-badge">Accountability</div>
+            <h2 style="border-left: 6px solid var(--coeur-orange); padding-left: 20px;">Automated Status Tracking</h2>
+            <div class="two-col">
+                <img src="status.png" class="demo-img" alt="Status Interface">
+                <div>
+                    <ul class="feature-list">
+                        <li><strong>Audit Trail:</strong> Every edit and approval is timestamped for legal safety.</li>
+                        <li><strong>Auto-Nudge:</strong> System triggers notifications to stakeholders to eliminate manual follow-up.</li>
+                        <li><strong>Transparency:</strong> No more "Black Hole" approvals; see exactly where the JD sits.</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#slide3" class="prev nav-arrow" onclick="updateProgress(3)">❮</a>
+            <a href="#slide5" class="next nav-arrow" onclick="updateProgress(5)">❯</a>
+        </section>
+
+        <!-- Slide 5: Library -->
+        <section id="slide5">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <div class="value-badge">Scalability</div>
+            <h2 style="border-left: 6px solid var(--coeur-orange); padding-left: 20px;">Institutional Library</h2>
+            <div class="two-col">
+                <div>
+                    <ul class="feature-list">
+                        <li><strong>Easy Access:</strong> Access to all JD copies, both approved and rejected.</li>
+                        <li><strong>Smart Search:</strong> Filter by department or keyword across all JD versions.</li>
+                        <li><strong>Version Control:</strong> Ensure there is a trail of every JD created by who and when.</li>
+                    </ul>
+                </div>
+                <img src="library.png" class="demo-img" alt="Library Interface">
+            </div>
+            <a href="#slide4" class="prev nav-arrow" onclick="updateProgress(4)">❮</a>
+            <a href="#slide6" class="next nav-arrow" onclick="updateProgress(6)">❯</a>
+        </section>
+
+        <!-- Slide 6: Live App -->
+        <section id="slide6">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <h2 style="border-left: 6px solid var(--coeur-orange); padding-left: 20px;">Proof of Concept: Live App</h2>
+            <div class="demo-callout">
+                <h3>Witness the Coeur Connect Engine</h3>
+                <p>Transitioning to the <strong>Real Demo App</strong> to prove we can solve the 10-day delay in under 2 minutes.</p>
+                <span class="btn-demo">START REAL DEMO</span>
+                <p style="font-size: 0.8rem; margin-top: 15px; color: var(--text-muted);">Showcasing: AI Research -> Compliance Check -> Instant Routing</p>
+            </div>
+            <a href="#slide5" class="prev nav-arrow" onclick="updateProgress(5)">❮</a>
+            <a href="#slide7" class="next nav-arrow" onclick="updateProgress(7)">❯</a>
+        </section>
+
+        <!-- Slide 7: TDD Functional System Timeline -->
+        <section id="slide7">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <h2 class="centered-title">TDD Functional System</h2>
+            
+            <!-- ROI Stats -->
+            <div class="roi-bar">
+                <div class="roi-stat">
+                    <span class="roi-number">80%</span>
+                    <span class="roi-label">Time-to-Post Reduction</span>
+                </div>
+                <div style="width: 1px; height: 35px; background: rgba(255,255,255,0.3);"></div>
+                <div class="roi-stat">
+                    <span class="roi-number">100%</span>
+                    <span class="roi-label">Audit Readiness</span>
+                </div>
+            </div>
+
+            <!-- Timeline with Vertical Text -->
+            <div class="timeline-wrapper">
+                <!-- Sprint Headers with Dates -->
+                <div class="timeline-header">
+                    <div class="sprint-header">
+                        <div class="sprint-name">Sprint I</div>
+                        <div class="sprint-date">Middle of February</div>
+                    </div>
+                    <div class="sprint-header">
+                        <div class="sprint-name">Sprint II</div>
+                        <div class="sprint-date">March</div>
+                    </div>
+                    <div class="sprint-header">
+                        <div class="sprint-name">Sprint III</div>
+                        <div class="sprint-date">April</div>
+                    </div>
+                    <div class="sprint-header">
+                        <div class="sprint-name">Sprint IV</div>
+                        <div class="sprint-date">June</div>
+                    </div>
+                </div>
+
+                <!-- Timeline Line with Dividers -->
+                <div class="timeline-line">
+                    <div class="timeline-dividers">
+                        <div class="divider"></div>
+                        <div class="divider"></div>
+                        <div class="divider"></div>
+                        <div class="divider"></div>
+                    </div>
+                </div>
+
+                <!-- Vertical Text Content -->
+                <div class="timeline-content">
+                    <!-- Sprint I - February -->
+                    <div class="phase-column">
+                        <div class="phase-text completed">RFP</div>
+                    </div>
+                    <div class="phase-column">
+                        <div class="phase-text completed">Testing</div>
+                    </div>
+                    <div class="phase-column">
+                        <div class="phase-text completed">Solution Presentation</div>
+                    </div>
+                    
+                    <!-- Sprint II - March -->
+                    <div class="phase-column">
+                        <div class="phase-text completed">Building</div>
+                    </div>
+                    <div class="phase-column">
+                        <div class="phase-text completed">CEED-testing</div>
+                    </div>
+                    
+                    <!-- Sprint III - April -->
+                    <div class="phase-column">
+                        <div class="phase-text current">Debugging / Modifying</div>
+                    </div>
+                    <div class="phase-column">
+                        <div class="phase-text upcoming">Pilot Beta testing 1</div>
+                    </div>
+                    
+                    <!-- Sprint IV - June -->
+                    <div class="phase-column">
+                        <div class="phase-text upcoming">ATC Integration</div>
+                    </div>
+                    <div class="phase-column">
+                        <div class="phase-text upcoming">Beta test 2</div>
+                    </div>
+                    <div class="phase-column">
+                        <div class="phase-text upcoming">Deployment and Maintain</div>
+                    </div>
+                    <div class="phase-column">
+                        <div class="phase-text upcoming">Adding the additional features based on feedback</div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#slide6" class="prev nav-arrow" onclick="updateProgress(6)">❮</a>
+            <div class="footer-note">End of Pitch | Coeur Connect 2026</div>
+        </section>
+
+    </div>
+
+    <script>
+        function updateProgress(slideNum) {
+            const percentage = (slideNum / 7) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+
+        // Initialize progress
+        updateProgress(1);
+
+        // Update progress on scroll
+        document.getElementById('slider').addEventListener('scroll', function() {
+            const scrollLeft = this.scrollLeft;
+            const slideWidth = window.innerWidth;
+            const currentSlide = Math.round(scrollLeft / slideWidth) + 1;
+            updateProgress(currentSlide);
+        });
+    </script>
+
+</body>
+</html>
