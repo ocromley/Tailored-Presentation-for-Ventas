@@ -124,14 +124,14 @@
         
         .sprint-date {
             font-size: 0.85rem;
-            color: var(--coeur-orange);
+            color: var(--ventas-blue);
             font-weight: 600;
         }
         
         .timeline-line {
             position: relative;
             height: 3px;
-            background: linear-gradient(to right, #9ca3af 25%, var(--coeur-orange) 25%, var(--coeur-orange) 75%, #8b5cf6 75%);
+            background: linear-gradient(to right, #9ca3af 50%, var(--coeur-orange) 50%, var(--coeur-orange) 75%, #9ca3af 75%);
             margin: 0 20px 30px 20px;
         }
         
@@ -152,7 +152,33 @@
         
         .timeline-line::after {
             right: 0;
-            background: #8b5cf6;
+            background: #9ca3af;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: -8px;
+            left: 75%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .timeline-marker-dot {
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            background: var(--coeur-orange);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--coeur-orange);
+        }
+        .timeline-marker-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--coeur-orange);
+            white-space: nowrap;
+            margin-top: 6px;
         }
         
         .timeline-dividers {
@@ -178,6 +204,7 @@
             display: flex;
             justify-content: space-between;
             padding: 0 10px;
+            overflow: hidden;
         }
         
         .phase-column {
@@ -191,7 +218,7 @@
         .phase-text {
             writing-mode: vertical-rl;
             text-orientation: mixed;
-            transform: rotate(180deg);
+            transform: rotate(225deg);
             font-size: 0.75rem;
             color: var(--text-main);
             line-height: 1.2;
@@ -433,6 +460,8 @@
             <div class="brand-container">
                 <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
                 <span class="brand-name">Coeur Connect</span>
+                <span class="brand-divider"></span>
+                <img src="ventasLogo-removebg-preview.png" alt="Ventas Logo" class="header-logo" onerror="this.style.display='none'">
             </div>
             <h2 class="centered-title">Functional & System Testing Through Test Driven Development</h2>
             
@@ -479,50 +508,54 @@
                         <div class="divider"></div>
                         <div class="divider"></div>
                     </div>
+                    <div class="timeline-marker">
+                        <div class="timeline-marker-dot"></div>
+                        <div class="timeline-marker-label">OC is here!</div>
+                    </div>
                 </div>
 
                 <!-- Vertical Text Content -->
                 <div class="timeline-content">
                     <!-- Sprint I - February -->
                     <div class="phase-column">
-                        <div class="phase-text completed">Gathering Requirements</div>
+                        <div class="phase-text completed">Gathering Data From Ventas</div>
                     </div>
                     <div class="phase-column">
-                        <div class="phase-text completed">Concept & </div>
-                    </div>
-                    <div class="phase-column">
-                        <div class="phase-text completed">Solution Presentation</div>
+                        <div class="phase-text completed">Concept & Inception of CoeurConnect: Scope, Vision, & Goals</div>
                     </div>
                     
                     <!-- Sprint II - March -->
                     <div class="phase-column">
-                        <div class="phase-text completed">Building</div>
+                        <div class="phase-text completed">Construction: Creating CC, Frontend & Backend Development </div>
                     </div>
                     <div class="phase-column">
-                        <div class="phase-text completed">SEED DATA testing</div>
+                        <div class="phase-text completed"> AI Agents Integration</div>
+                    </div>
+                    <div class="phase-column">
+                        <div class="phase-text completed"> Functional & Systems Testing </div>
                     </div>
                     
                     <!-- Sprint III - April -->
                     <div class="phase-column">
-                        <div class="phase-text current">Debugging / Modifying</div>
+                        <div class="phase-text current"> Evaluate & Monitor: Debugging & Iterative Changes Made</div>
                     </div>
                     <div class="phase-column">
-                        <div class="phase-text upcoming">PLaceholder</div>
+                        <div class="phase-text current">Functional & Systems Testing 2.0 </div>
                     </div>
+
                     
                     <!-- Sprint IV - June -->
+
                     <div class="phase-column">
-                        <div class="phase-text upcoming">ATS Integration</div>
+                        <div class="phase-text completed"> Showcase & Implementation: Demo CC & Gather Feedback </div>
+                    </div>                    
+                    <div class="phase-column">
+                        <div class="phase-text completed">Adding New Features: ATS Integration, Salary Range, etc...</div>
                     </div>
                     <div class="phase-column">
-                        <div class="phase-text upcoming">PLaceholder</div>
+                        <div class="phase-text completed">Deployment & Maintenance</div>
                     </div>
-                    <div class="phase-column">
-                        <div class="phase-text upcoming">Deployment and Maintence</div>
-                    </div>
-                    <div class="phase-column">
-                        <div class="phase-text upcoming">Adding additional features</div>
-                    </div>
+
                 </div>
             </div>
 
