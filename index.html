@@ -40,7 +40,7 @@
         }
         .progress-bar {
             height: 100%; background: var(--coeur-orange);
-            transition: width 0.3s ease; width: 14%;
+            transition: width 0.3s ease; width: 11%;
         }
 
         /* BRANDING */
@@ -254,6 +254,49 @@
             border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
+
+        /* THANK YOU SLIDE */
+        .thank-you-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        .thank-you-title {
+            font-size: clamp(3rem, 8vh, 5rem);
+            font-weight: 800;
+            color: var(--ventas-blue);
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+        
+        .thank-you-subtitle {
+            font-size: clamp(1.5rem, 4vh, 2.5rem);
+            color: var(--coeur-orange);
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+        
+        .qa-badge {
+            display: inline-block;
+            background: var(--ventas-blue);
+            color: white;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: clamp(1.5rem, 4vh, 2.5rem);
+            font-weight: 700;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 43, 92, 0.2);
+        }
+        
+        .contact-info {
+            margin-top: 50px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
@@ -337,8 +380,26 @@
             <a href="#slide4" class="next nav-arrow" onclick="updateProgress(4)">❯</a>
         </section>
 
-        <!-- Slide 4: Status Tracking -->
+        <!-- Slide 4: Live App -->
         <section id="slide4">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <h2 style="border-left: 6px solid var(--coeur-orange); padding-left: 20px;">Proof of Concept: Live App</h2>
+            <div class="demo-callout">
+                <h3>Witness the Coeur Connect Engine</h3>
+                <p>Transitioning to the <strong>Real Demo App</strong> to prove we can solve the 10-day delay in under 2 minutes.</p>
+                <span class="btn-demo">START REAL DEMO</span>
+                <p style="font-size: 0.8rem; margin-top: 15px; color: var(--text-muted);">Showcasing: AI Research -> Compliance Check -> Instant Routing</p>
+            </div>
+            <a href="#slide3" class="prev nav-arrow" onclick="updateProgress(3)">❮</a>
+            <a href="#slide5" class="next nav-arrow" onclick="updateProgress(5)">❯</a>
+            <div class="footer-note">Slide 4: Proof of Concept</div>
+        </section>
+
+        <!-- Slide 5: Status Tracking -->
+        <section id="slide5">
             <div class="brand-container">
                 <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
                 <span class="brand-name">Coeur Connect</span>
@@ -355,12 +416,13 @@
                     </ul>
                 </div>
             </div>
-            <a href="#slide3" class="prev nav-arrow" onclick="updateProgress(3)">❮</a>
-            <a href="#slide5" class="next nav-arrow" onclick="updateProgress(5)">❯</a>
+            <a href="#slide4" class="prev nav-arrow" onclick="updateProgress(4)">❮</a>
+            <a href="#slide6" class="next nav-arrow" onclick="updateProgress(6)">❯</a>
+            <div class="footer-note">Slide 5: Status Tracking</div>
         </section>
 
-        <!-- Slide 5: Library -->
-        <section id="slide5">
+        <!-- Slide 6: Library -->
+        <section id="slide6">
             <div class="brand-container">
                 <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
                 <span class="brand-name">Coeur Connect</span>
@@ -377,28 +439,12 @@
                 </div>
                 <img src="library.png" class="demo-img" alt="Library Interface">
             </div>
-            <a href="#slide4" class="prev nav-arrow" onclick="updateProgress(4)">❮</a>
-            <a href="#slide6" class="next nav-arrow" onclick="updateProgress(6)">❯</a>
-        </section>
-
-        <!-- Slide 6: Live App -->
-        <section id="slide6">
-            <div class="brand-container">
-                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
-                <span class="brand-name">Coeur Connect</span>
-            </div>
-            <h2 style="border-left: 6px solid var(--coeur-orange); padding-left: 20px;">Proof of Concept: Live App</h2>
-            <div class="demo-callout">
-                <h3>Witness the Coeur Connect Engine</h3>
-                <p>Transitioning to the <strong>Real Demo App</strong> to prove we can solve the 10-day delay in under 2 minutes.</p>
-                <span class="btn-demo">START REAL DEMO</span>
-                <p style="font-size: 0.8rem; margin-top: 15px; color: var(--text-muted);">Showcasing: AI Research -> Compliance Check -> Instant Routing</p>
-            </div>
             <a href="#slide5" class="prev nav-arrow" onclick="updateProgress(5)">❮</a>
             <a href="#slide7" class="next nav-arrow" onclick="updateProgress(7)">❯</a>
+            <div class="footer-note">Slide 6: Library</div>
         </section>
 
-        <!-- Slide 7: AI Model Comparison Image -->
+       <!-- Slide 7: AI Model Comparison Image -->
         <section id="slide7">
             <div class="brand-container">
                 <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
@@ -512,14 +558,36 @@
             </div>
 
             <a href="#slide7" class="prev nav-arrow" onclick="updateProgress(7)">❮</a>
-            <div class="footer-note">End of Pitch | Coeur Connect 2026</div>
+            <a href="#slide9" class="next nav-arrow" onclick="updateProgress(9)">❯</a>
+            <div class="footer-note">Slide 8: Development Timeline</div>
+        </section>
+
+        <!-- Slide 9: Thank You Ventas & Q&A -->
+        <section id="slide9">
+            <div class="brand-container">
+                <img src="CC.png.png" alt="Coeur Connect Logo" class="header-logo" onerror="this.style.display='none'">
+                <span class="brand-name">Coeur Connect</span>
+            </div>
+            <div class="thank-you-container">
+                <div class="thank-you-title">Thank You Ventas</div>
+                <div class="thank-you-subtitle">for your time and consideration</div>
+                
+                <div class="qa-badge">Q&A</div>
+                
+                <div class="contact-info">
+                    <p style="margin: 5px 0;">Ready to transform your hiring process?</p>
+                    <p style="margin: 5px 0; font-weight: 600; color: var(--ventas-blue);">Coeur Connect Team</p>
+                </div>
+            </div>
+            <a href="#slide8" class="prev nav-arrow" onclick="updateProgress(8)">❮</a>
+            <div class="footer-note">Thank You | Coeur Connect 2026</div>
         </section>
 
     </div>
 
     <script>
         function updateProgress(slideNum) {
-            const percentage = (slideNum / 8) * 100;
+            const percentage = (slideNum / 9) * 100;
             document.getElementById('progressBar').style.width = percentage + '%';
         }
 
